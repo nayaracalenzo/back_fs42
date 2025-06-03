@@ -12,8 +12,8 @@ const router = Router();
 //rotas de clientes
 router.get("/", getAllClientes);
 router.get("/:id", getClienteById);
-router.post("/", createCliente);
-router.put("/:id", updateCliente);
-router.delete("/:id", deleteCliente);
+router.post("/", createCliente); //falta esse 09/06/25
+router.put("/:id", updateCliente); //falta esse
+router.delete("/:id", deleteCliente); //falta esse
 
 export default router;

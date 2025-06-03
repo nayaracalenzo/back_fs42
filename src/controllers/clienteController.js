@@ -1,5 +1,8 @@
 //busca todos os clientes
-import { findAllClientes } from "../repositories/clienteRepository.js";
+import {
+  findAllClientes,
+  findClienteById,
+} from "../repositories/clienteRepository.js";
 
 export async function getAllClientes(req, res) {
   try {
@@ -14,7 +17,22 @@ export async function getAllClientes(req, res) {
 }
 
 //buscar cliente pelo id
-export async function getClienteById(req, res) {}
+export async function getClienteById(req, res) {
+  const { id } = req.params;
+
+  try {
+    const cliente = await findClienteById(id);
+
+    if (!cliente) {
+      return res.status(404).json({ messagem: "Cliente não encontrado" });
+    }
+
+    return res.json(cliente);
+  } catch (error) {
+    console.error("Erro ao buscar o cliente:", error);
+    res.status(500).json({ message: "Erro ao buscar o cliente" });
+  }
+}
 
 //cria um novo cliente
 export async function createCliente(req, res) {}
