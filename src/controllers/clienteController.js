@@ -12,3 +12,15 @@ export async function getAllClientes(req, res) {
       .json({ message: "Erro ao buscar todos os clientes" });
   }
 }
+
+//buscar cliente pelo id
+export async function getClienteById(req, res) {}
+
+//cria um novo cliente
+export async function createCliente(req, res) {}
+
+//atualiza o cliente
+export async function updateCliente(req, res) {}
+
+//deleta o cliente
+export async function deleteCliente(req, res) {}
