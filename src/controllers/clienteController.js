@@ -1,4 +1,6 @@
 //busca todos os clientes
+import { findAllClientes } from "../repositories/clienteRepository.js";
+
 export async function getAllClientes(req, res) {
   try {
     const clientes = await findAllClientes();
