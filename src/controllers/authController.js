@@ -43,8 +43,41 @@ export async function login(req, res) {
     const token = jwt.sign({ id: usuario.id, nome: usuario.nome }, JWT_SECRET, {
       expiresIn: JWT_EXPIRES_IN,
     });
+
+    res.cookie("token", token, {
+      httpOnly: true, //permitir que o cookie "token" nao seja acessado do lado cliente por JS.
+      secure: false, //coloque true se estiver em produção, somente https.
+      sameSite: "lax",
+      maxAge: 7200000, //2 horas em milisegundos
+    });
+
+    return res.json({ message: "Login realizado com sucesso", token: token });
   } catch (error) {
     console.error("Erro ao fazer o login", error);
     res.status(400).json({ message: "Erro ao fazer o login" });
+  }
+}
+
+//função de logout do usuário
+export function logout(req, res) {
+  res.clearCookie("token");
+  return res.json({ message: "Logout feito com sucesso" });
+}
+
+//perfil do usuario logado
+export async function perfil(req, res) {
+  const usuarioId = req.user.id;
+
+  try {
+    const usuario = await authRepository.findUserById(usuarioId);
+
+    if (!usuario) {
+      res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+    return res.json(usuario);
+  } catch (error) {
+    console.error("Erro ao buscar usuário", error);
+    res.status(400).json({ message: "Erro ao buscar usuário" });
   }
 }
