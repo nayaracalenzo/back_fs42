@@ -5,8 +5,14 @@ import authRoutes from "./authRoutes.js";
 
 const router = Router();
 
-router.use("/auth", authRoutes);
-router.use("/clientes", clienteRoutes);
-router.use("/enderecos", enderecoRoutes);
+router.use("/auth",
+  // #swagger.tags = ['autenticacao']
+  authRoutes);
+router.use("/clientes",
+  // #swagger.tags = ['clientes']
+  clienteRoutes);
+router.use("/enderecos",
+  // #swagger.tags = ['enderecos']
+  enderecoRoutes);
 
 export default router;

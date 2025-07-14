@@ -1,5 +1,3 @@
-import swaggerUi from 'swagger-ui-express';
-import swaggerFile from './swagger-output.json';
 import express from "express";
 import sequelize from "./config/db.js";
 import router from "./routes/router.js";
@@ -18,12 +16,12 @@ app.use("/api", router);
 
 //Sincronizar as tabelas do banco
 sequelize
-    .sync()
-    .then(() => {
-        console.log("Banco de Dados sincronizado com sucesso.");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar o banco de dados: ", error);
-    });
+  .sync()
+  .then(() => {
+    console.log("Banco de Dados sincronizado com sucesso.");
+  })
+  .catch((error) => {
+    console.error("Erro ao sincronizar o banco de dados: ", error);
+  });
 
 export default app;
