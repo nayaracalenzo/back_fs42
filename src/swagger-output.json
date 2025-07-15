@@ -17,10 +17,19 @@
           "autenticacao"
         ],
         "summary": "rota de cadastro de usuário",
-        "description": "",
+        "description": "cadastra um usuário com nome, email e senha",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Adalto",
+                  "email": "adalto@exemplo.com",
+                  "senha": "****"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
